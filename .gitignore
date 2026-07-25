@@ -8,3 +8,6 @@ __pycache__
 *.pyc
 *.pyo
 *.pyd
+
+# 敏感信息
+cookie.txt

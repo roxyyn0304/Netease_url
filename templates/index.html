@@ -125,7 +125,7 @@
                                 <option value="standard">标准音质</option>
                                 <option value="exhigh">极高音质</option>
                                 <option value="lossless">无损音质</option>
-                                <option value="hires">Hires音质</option>
+                                <option value="hires" selected>Hires音质</option>
                                 <option value="sky">沉浸环绕声</option>
                                 <option value="jyeffect">高清环绕声</option>
                                 <option value="jymaster">超清母带</option>
@@ -164,7 +164,7 @@
                             <select id="download_quality" class="form-select">
                                 <option value="standard">标准音质</option>
                                 <option value="exhigh">极高音质</option>
-                                <option value="lossless" selected>无损音质</option>
+                                <option value="hires" selected>Hires音质</option>
                                 <option value="hires">Hires音质</option>
                                 <option value="sky">沉浸环绕声</option>
                                 <option value="jyeffect">高清环绕声</option>
@@ -618,28 +618,14 @@
                 const xhr = new XMLHttpRequest();
                 xhr.open('POST', '/Download', true);
                 xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-                xhr.responseType = 'blob';
                 
                 xhr.onload = function() {
                     if (xhr.status === 200) {
-                        // 获取自定义响应头
                         const downloadMessage = xhr.getResponseHeader('X-Download-Message');
                         const encodedFilename = xhr.getResponseHeader('X-Download-Filename');
                         const filename = encodedFilename ? decodeURIComponent(encodedFilename) : 'music.flac';
                         
-                        // 创建下载链接
-                        const blob = xhr.response;
-                        const url = window.URL.createObjectURL(blob);
-                        const a = document.createElement('a');
-                        a.href = url;
-                        a.download = filename || 'music.flac';
-                        document.body.appendChild(a);
-                        a.click();
-                        document.body.removeChild(a);
-                        window.URL.revokeObjectURL(url);
-                        
-                        // 显示完成提示
-                        alert('✅ 音乐文件下载完成！');
+                        alert(`✅ 下载完成！\n文件已保存到: ${filename}`);
                         console.log(`下载完成: ${filename}`);
                         if (downloadMessage) {
                             console.log(`服务器消息: ${downloadMessage}`);
@@ -648,7 +634,6 @@
                         alert('下载失败，请重试');
                     }
                     
-                    // 重置按钮状态
                     $('#download-progress').addClass('d-none');
                     $('#download-btn').prop('disabled', false).text('下载音乐');
                 };

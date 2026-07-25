@@ -257,7 +257,7 @@ class MusicDownloader:
 
     def _build_file_path(self, music_info: MusicInfo) -> Path:
         """根据 MusicInfo 生成下载文件路径"""
-        filename = f"{music_info.artists} - {music_info.name}"
+        filename = f"{music_info.name}-{music_info.artists}"
         safe = self._sanitize_filename(filename)
         ext = self._determine_file_extension(
             music_info.download_url,

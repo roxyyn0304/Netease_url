@@ -38,7 +38,7 @@ class APIConfig:
     host: str = '0.0.0.0'
     port: int = 5000
     debug: bool = False
-    downloads_dir: str = 'downloads'
+    downloads_dir: str = '/app/downloads'
     max_file_size: int = 500 * 1024 * 1024  # 500MB
     request_timeout: int = 30
     log_level: str = 'INFO'
