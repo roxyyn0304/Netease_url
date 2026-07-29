@@ -1,3 +1,5 @@
+# Source: https://github.com/roxyyn0304/Netease_url (backend)
+# Source: https://github.com/roxyyn0304/netease-vue (frontend)
 services:
   netease-url:
     build:
