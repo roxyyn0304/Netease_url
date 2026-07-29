@@ -10,3 +10,14 @@ services:
     volumes:
       - C:\Users\roxyy\Downloads:/app/downloads
     restart: unless-stopped
+
+  netease-vue:
+    image: netease_url-netease-vue:latest
+    ports:
+      - "8000:80"
+    volumes:
+      - D:\code\netease-vue\dist:/usr/share/nginx/html
+      - D:\code\netease-vue\nginx.conf:/etc/nginx/conf.d/default.conf
+    depends_on:
+      - netease-url
+    restart: unless-stopped
